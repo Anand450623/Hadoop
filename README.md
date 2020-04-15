@@ -1,0 +1,1 @@
+This repository contains sample code to get started with Hadoop 2.x

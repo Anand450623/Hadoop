@@ -1,0 +1,1 @@
+This folder contains basic commmands for starting with hive databases

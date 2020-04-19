@@ -1,0 +1,8 @@
+create table if not exists sample ( first string, second int) 
+row format delimited fields 
+terminated by ',' 
+stored as textfile;
+
+LOAD DATA LOCAL INPATH 'C:/sample.csv' INTO TABLE temp;
+
+CREATE INDEX index_sample ON TABLE sample(first) AS 'org.apache.hadoop.hive.ql.index.compact.CompactIndexHandler'  WITH DEFERRED REBUILD;

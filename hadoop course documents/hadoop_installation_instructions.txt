@@ -1,0 +1,99 @@
+youtube channel for reference : https://www.youtube.com/watch?time_continue=162&v=vLVWrGGqGJU&feature=emb_logo
+Error i got : https://stackoverflow.com/questions/51118358/noclassdeffounderror-org-apache-hadoop-yarn-server-timelineservice-collector-tim
+
+web links : 
+1. http://localhost:8088/cluster
+2. http://localhost:50070/dfshealth.html#tab-overview
+
+core-site.xml
+
+<configuration>
+	<property>
+		<name>fs.defaultFS</name>
+		<value>hdfs://localhost:9000</value>
+	</property>
+</configuration>
+
+mapred-site.xml
+
+<configuration>
+	<property>
+		<name>mapreduce.framework.name</name>
+		<value>yarn</value>
+	</property>
+</configuration>
+
+hdfs-site.xml
+
+// to set default block size.. The value provided is number of bytes
+
+<property>
+  <name>dfs.block.size</name>
+  <value>134217728</value>
+</property
+
+<configuration>
+	<property>
+		<name>dfs.replication</name>
+		<value>1</value>
+	</property>
+	<property>
+		<name>dfs.namenode.name.dir</name>
+		<value>C:\hadoop-2.10.0\data\namenode</value>
+	</property>
+	<property>
+		<name>dfs.datanode.data.dir</name>
+		<value>C:\hadoop-2.10.0\data\datanode</value>
+	</property>
+</configuration>
+
+yarn-site.xml
+
+<configuration>
+	<property>
+		<name>yarn.nodemanager.aux-services</name>
+		<value>mapreduce_shuffle</value>
+	</property>
+	<property>
+		<name>yarn.nodemanager.aux-services.mapreduce.shuffle.class</name>
+		<value>org.apache.hadoop.mapred.ShuffleHandler</value>
+	</property>
+</configuration>
+
+hadoop-env.cmd
+
+set JAVA_HOME=C:\Java\jdk1.8.0_231
+
+Commands to execute : 
+
+1. run cmd as administrator
+2. execute C:\hadoop-2.10.0\etc\hadoop\hadoop-env.cmd
+3. hdfs namenode -format
+4. start-all.cmd
+5. hadoop fs -mkdir /dir
+6. hadoop fs -put C:/hadoop_input_files/input.txt /dir
+7. hadoop jar C:\hadoop_input_files\wordcount.jar org.myorg.WordCount /first/input.txt /first_output
+8. hadoop fs -get /first_output/part-r-00000  C:/hadoop_input_files/output.txt
+9. stop-all.cmd
+
+
+Other Commands :
+ 
+hadoop dfsadmin -safemode leave	// to leave safe mode
+
+
+Installation of spark : 
+
+https://www.youtube.com/watch?v=2CvtwKTjI4Q&t=500s
+
+> spark/bin/spark-shell.cmd
+
+
+
+Installation of hive : 
+
+https://www.youtube.com/watch?v=npyRXkMhrgk
+
+> start-all.cmd
+> C:/derby/bin/startNetworkServer -h 0.0.0.0
+> hive
